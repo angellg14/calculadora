@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMC</title>
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 0;
+        }
+        input[type="number"] {
+            width: 80px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #conte {
+            text-align: center;
+            max-width: 600px;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #resultado {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        img{
+            
+            margin-right: 10px;
+            width: 250px;
+            height: 250px;
+        }
+    </style>
+</head>
+<header>
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link" href="./index.html" target="_blank">Inicio</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="./IMC.html">IMC</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="./Edad.html" target="_blank">Edad de tu Mascota</a>
+        </li>
+    </ul>
+</header>
+<body>
+        <h1>Índice de Masa Muscular (IMC)</h1>
+        <img src="./imc.webp" alt="IMC" style="max-width: 100%;">
+        <h1>Calculadora de IMC</h1>
+        <label for="altura">Altura (cm):</label>
+        <input type="number" id="altura" min="0" required>
+        <br>
+            <label for="peso">Peso (kg):</label>
+            <input type="number" id="peso" min="0" required>
+        <br>
+        <button onclick="calcularIMC()">Calcular IMC</button>
+        <div id="resultado"></div>
+            <p>El Índice de Masa Corporal (IMC) es una medida que se utiliza para evaluar si una persona tiene un peso saludable
+            en relación con su altura. Es una fórmula que se calcula dividiendo el peso de una persona en kilogramos por el
+            cuadrado de su altura en metros.</p>
+            <p>La fórmula para calcular el IMC es la siguiente:</p>
+            <p>IMC = peso (kg) / (altura (m) * altura (m))</p>
+            <p>Según la Organización Mundial de la Salud (OMS), los rangos de IMC se interpretan de la siguiente manera:</p>
+        <ul>
+            <li>IMC por debajo de 18.5: Bajo peso</li>
+            <li>IMC entre 18.5 y 24.9: Peso normal</li>
+            <li>IMC entre 25 y 29.9: Sobrepeso</li>
+            <li>IMC de 30 o más: Obesidad</li>
+        </ul>
+        <p>Es importante tener en cuenta que el IMC es solo una guía y no tiene en cuenta la composición corporal. Por
+        ejemplo, una persona con mucha masa muscular puede tener un IMC alto pero no estar necesariamente sobrepeso u
+        obesa.</p>
+        <p>Si estás interesado en calcular tu propio IMC, puedes utilizar una calculadora de IMC en línea o hacerlo
+        manualmente utilizando la fórmula mencionada anteriormente.</p>
+</body>
+<script>
+    function calcularIMC() {
+        var altura = document.getElementById("altura").value / 100; // Convertir a metros
+        var peso = document.getElementById("peso").value;
+
+        if (altura > 0 && peso > 0) {
+            var imc = peso / (altura * altura);
+            var mensaje = "Tu IMC es: " + imc.toFixed(2);
+            document.getElementById("resultado").textContent = mensaje;
+        } else {
+            document.getElementById("resultado").textContent = "Por favor, introduce una altura y un peso válidos.";
+        }
+    }
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+</html>

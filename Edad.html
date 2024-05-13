@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edad de tu Mascota</title>
+    <style>
+        body {
+            
+        }
+        #container {
+            text-align: center;
+            max-width: 600px;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        h1 {
+            margin-top: 20px;
+        }
+        img{
+            margin-right: 10px;
+            width: 250px;
+            height: 250px;
+        }
+        select, input, button {
+            margin-top: 20px;
+            padding: 10px;
+            font-size: 16px;
+        }
+        .opcion-perro {
+            display: none;
+        }
+    </style>
+    <link rel="stylesheet" href="bootstrap.min.css">
+</head>
+<header>
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="./index.html" target="_blank">Inicio</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="./IMC.html" target="_blank">IMC</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link active" href="./Edad.html">Edad de tu Mascota</a>
+        </li>
+    </ul>
+</header>
+<body>
+    <div id="container">
+        <h1>Calculadora de Edad de Mascotas</h1>
+        <img src="hijas.jpg" alt="Mascota">
+        <select id="tipoMascota" onchange="mostrarOpcionesPerro()">
+            <option value="perro">Perro</option>
+            <option value="gato">Gato</option>
+        </select>
+        <div class="opcion-perro" id="opcion1">
+            <p>Seleccione una opción de cálculo:</p>
+            <input type="radio" id="formulaPerro" name="opcionPerro" value="formula" checked>
+            <label for="formulaPerro">Fórmula específica</label><br>
+            <input type="radio" id="multiplicarPerro" name="opcionPerro" value="multiplicar">
+            <label for="multiplicarPerro">Multiplicar edad por 7</label><br>
+        </div>
+        <input type="number" id="aniosCumplidos" placeholder="Años Cumplidos">
+        <button onclick="calcularEdad()">Calcular Edad</button>
+        <div id="resultado"></div>
+    </div>
+</body>
+<script>
+    function mostrarOpcionesPerro() {
+        var tipoMascota = document.getElementById("tipoMascota").value;
+        var opcionesPerro = document.querySelectorAll('.opcion-perro');
+
+        if (tipoMascota === "perro") {
+            opcionesPerro.forEach(function(opcion) {
+                opcion.style.display = "block";
+            });
+        } else {
+            opcionesPerro.forEach(function(opcion) {
+                opcion.style.display = "none";
+            });
+        }
+    }
+
+    function calcularEdad() {
+        var tipoMascota = document.getElementById("tipoMascota").value;
+        var edad;
+
+        if (tipoMascota === "perro") {
+            var opcion = document.querySelector('input[name="opcionPerro"]:checked').value;
+
+            if (opcion === "formula") {
+                var aniosCumplidos = parseInt(document.getElementById("aniosCumplidos").value);
+                edad = aniosCumplidos > 2 ? (21 + (aniosCumplidos - 2) * 4) : aniosCumplidos * 10.5;
+            } else if (opcion === "multiplicar") {
+                edad = parseInt(document.getElementById("aniosCumplidos").value) * 7;
+            }
+        } else if (tipoMascota === "gato") {
+            edad = parseInt(document.getElementById("aniosCumplidos").value) * 4;
+        }
+
+        document.getElementById("resultado").textContent = "La edad de tu mascota es: " + edad + " años " + tipoMascota;
+    }
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+</html>
